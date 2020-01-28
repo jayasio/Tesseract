@@ -1,2 +1,2 @@
 # Tesseract
-Experimental three-dimensional⁠— pointing device with six degrees-of-freedom. 
+Experimental three-dimensional pointing device with six degrees-of-freedom. 
