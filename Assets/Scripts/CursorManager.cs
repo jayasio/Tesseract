@@ -14,6 +14,8 @@ public class CursorManager : MonoBehaviour
     float zCache = 0.5f;
     #endregion
 
+    public bool rotate = false;
+
     public bool isConnected() => tcp.isConnected();
     public void ServerStart(String IP, int port) => tcp.ServerStart(IP, port);
     public void ServerStop() => tcp.ServerStop();
@@ -46,12 +48,14 @@ public class CursorManager : MonoBehaviour
             else if (tracker.position.z - zCache < -1 * threshold) transform.GetComponent<Renderer>().material.color = Color.blue;
             else transform.GetComponent<Renderer>().material.color = Color.yellow;
 
-            // transform.Rotate(
-            //     Time.deltaTime * 3 * (float)Math.Round(tracker.rotation.x, 1),
-            //     Time.deltaTime * 3 * (float)Math.Round(tracker.rotation.y, 1),
-            //     Time.deltaTime * 3 * (float)Math.Round(tracker.rotation.z, 1),
-            //     Space.Self
-            // );
+            if (rotate)
+            {
+                transform.Rotate(
+                Time.deltaTime * speedFactor * (float)Math.Round(tracker.rotation.x, 1),
+                Time.deltaTime * speedFactor * (float)Math.Round(tracker.rotation.y, 1),
+                Time.deltaTime * speedFactor * (float)Math.Round(tracker.rotation.z, 1),
+                Space.Self);
+            }
         }
     }
 
